@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import FooterComponent from "./Footer";
-import NavbarComponent from "./navbar";
+import NavbarComponent from "./Navbar";
 
 export function Index() {
   return (
