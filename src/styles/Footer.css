@@ -1,0 +1,14 @@
+a{
+    text-decoration: none !important;
+}
+#enlace-whatsapp{
+    display: flex;
+    align-items: center;
+}
+#img-whatsapp{
+    width: 70px;
+}
+#metodos_pago{
+    display: flex;
+    align-items: center;
+}

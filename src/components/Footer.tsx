@@ -1,4 +1,17 @@
+import "../styles/Footer.css";
 import logo from "../images/logo.jpg";
+import whatsapp from "../images/whatsapp.webp";
+import visa from "../images/Visa_Logo.png";
+import mastercard from "../images/mastercard.png";
+import yape from "../images/yape.png";
+import americanExpress from "../images/americanExpress.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTiktok,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 const FooterComponent = () => {
   return (
@@ -20,13 +33,19 @@ const FooterComponent = () => {
               convocatorias de trabajo
             </div>
             <div className="mt-3">
-              <b className="d-block text-dark">RUC: 20563335950</b>
+              <b className="d-block text-dark">RUC: 20601892295</b>
               <a className="d-block text-dark" href="">
-                sanch@hotmail.com
+                Fsanchezmiranda@outlook.com
               </a>
               <a className="d-block text-dark" href="">
                 www.fernandosanch.pe
               </a>
+            </div>
+            <div className="mt-3 d-flex justify-content-between w-50">
+              <FontAwesomeIcon icon={faFacebook} />
+              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faTiktok} />
+              <FontAwesomeIcon icon={faYoutube} />
             </div>
           </div>
           <div className="col-xl-4 col-lg-4 col-md-6">
@@ -53,11 +72,26 @@ const FooterComponent = () => {
             </div>
           </div>
           <div className="col-xl-4 col-lg-4 col-md-6">
-            <div className="mb-3 text-dark">ATENCIÓN AL CLIENTE Y VENTAS</div>
-            <div className="text-dark">Por Whatsapp, las 24 horas</div>
-            <a className="mb-5 text-dark" href="">
-              917 314 172
-            </a>
+            <div className="mb-3 text-dark">
+              ATENCIÓN AL CLIENTE Y VENTAS
+              <a
+                id="enlace-whatsapp"
+                className="mb-5 text-dark "
+                href="https://wa.me/+51917314172?text=Hola, estoy en la página web y deseo mas información sobre los cursos que brindas"
+              >
+                <img src={whatsapp} id="img-whatsapp" />
+                <h3>917314172</h3>
+              </a>
+            </div>
+            <div className="mb-3 text-dark" id="metodos_pago">
+              MÉTODOS DE PAGO
+            </div>
+            <div id="metodos_pago">
+              <img src={visa} id="img-whatsapp" />
+              <img src={mastercard} id="img-whatsapp" />
+              <img src={yape} id="img-whatsapp" />
+              <img src={americanExpress} id="img-whatsapp" />
+            </div>
           </div>
         </div>
       </div>
