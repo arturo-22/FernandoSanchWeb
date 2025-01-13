@@ -15,10 +15,10 @@ import {
 
 const FooterComponent = () => {
   return (
-    <footer className="py-4 bg-white" id="footer">
+    <footer className="py-4" id="footer">
       <div className="container">
         <div className="row">
-          <div className="col-xl-4 col-lg-4 col-md-6 ">
+          <div className="col-xl-4 col-lg-4 col-md-6 mt-5">
             <div className="d-flex justify-content-center">
               <img
                 src={logo}
@@ -27,71 +27,88 @@ const FooterComponent = () => {
                 id="img-logo"
               />
             </div>
-            <div className="mt-3 text-dark">
-              Ingenierio que crear cursos de capacitación, brindo cursos de
+            <div className="mt-3 text-white" id="resumen">
+              Somos una empresa de capacitación, brindamos cursos de
               actualización para público en general y profesionales para las
               convocatorias de trabajo
             </div>
-            <div className="mt-3">
-              <b className="d-block text-dark">RUC: 20601892295</b>
-              <a className="d-block text-dark" href="">
+            <div className="mt-3 text-white">
+              <span className="d-block">RUC: 20601892295</span>
+              <a className="d-block" href="">
                 Fsanchezmiranda@outlook.com
               </a>
-              <a className="d-block text-dark" href="">
+              <a className="d-block" href="">
                 www.fernandosanch.pe
               </a>
             </div>
-            <div className="mt-3 d-flex justify-content-between w-50">
-              <FontAwesomeIcon icon={faFacebook} />
-              <FontAwesomeIcon icon={faInstagram} />
-              <FontAwesomeIcon icon={faTiktok} />
-              <FontAwesomeIcon icon={faYoutube} />
-            </div>
-          </div>
-          <div className="col-xl-4 col-lg-4 col-md-6">
-            <div className="mb-3 text-dark">MI CUENTA</div>
-            <div className="d-flex flex-column">
-              <a className="text-dark" href="">
-                Registrate
+            <div className="mt-3 d-flex justify-content-center w-100 text-white">
+              <a className="mx-4" href="">
+                <FontAwesomeIcon icon={faFacebook} />
               </a>
-              <a className="text-dark" href="">
-                Iniciar Sesion
+              <a className="mx-4" href="">
+                <FontAwesomeIcon icon={faInstagram} />
               </a>
-            </div>
-            <div className="mb-3 mt-3 text-dark">FERNANDO SANCH</div>
-            <div className="d-flex flex-column">
-              <a className="text-dark" href="">
-                ¿Quién Soy?
+              <a className="mx-4" href="">
+                <FontAwesomeIcon icon={faTiktok} />
               </a>
-              <a className="text-dark" href="">
-                Terminos y condiciones
-              </a>
-              <a className="text-dark" href="">
-                Políticas de privacidad
+              <a className="mx-4" href="">
+                <FontAwesomeIcon icon={faYoutube} />
               </a>
             </div>
           </div>
-          <div className="col-xl-4 col-lg-4 col-md-6">
-            <div className="mb-3 text-dark">
+          <div className="col-xl-4 col-lg-4 col-md-6 mt-5 d-flex flex-column align-items-center">
+            <div className="mb-3" id="subtitulos">
+              MI CUENTA
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <a href="">Registrate</a>
+              <a href="">Iniciar Sesion</a>
+            </div>
+            <div className="mb-3 mt-3" id="subtitulos">
+              FERNANDO SANCH
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <a href="">¿Quién Soy?</a>
+              <a href="">Términos y condiciones</a>
+              <a href="">Políticas de privacidad</a>
+            </div>
+          </div>
+          <div className="col-xl-4 col-lg-4 col-md-6 mt-5 d-flex flex-column align-items-center">
+            <div id="subtitulos">
               ATENCIÓN AL CLIENTE Y VENTAS
-              <a
-                id="enlace-whatsapp"
-                className="mb-5 text-dark "
-                href="https://wa.me/+51917314172?text=Hola, estoy en la página web y deseo mas información sobre los cursos que brindas"
-              >
-                <img src={whatsapp} id="img-whatsapp" />
-                <h3>917314172</h3>
-              </a>
+              <div id="enlace-numero" className="ms-3">
+                <a
+                  id="enlace-whatsapp"
+                  href="https://wa.me/+51917314172?text=Hola, estoy en la página web y deseo mas información sobre los cursos que brindas"
+                >
+                  <img src={whatsapp} id="img-whatsapp" />
+                  <h3 id="numeroCelular" className="mb-0">
+                    917314172
+                  </h3>
+                </a>
+              </div>
             </div>
-            <div className="mb-3 text-dark" id="metodos_pago">
+            <div className="mb-3" id="subtitulos">
               MÉTODOS DE PAGO
             </div>
-            <div id="metodos_pago">
-              <img src={visa} id="img-whatsapp" />
-              <img src={mastercard} id="img-whatsapp" />
-              <img src={yape} id="img-whatsapp" />
-              <img src={americanExpress} id="img-whatsapp" />
+            <div id="metodos_pago" className="d-flex justify-content-center">
+              <img src={visa} className="me-2" id="img-visa" />
+              <img src={mastercard} className="me-2" id="img-mastercard" />
+              <img src={yape} className="me-2" id="img-yape" />
+              <img
+                src={americanExpress}
+                className="me-2"
+                id="img-americanExpress"
+              />
             </div>
+          </div>
+        </div>
+        <div className="row justify-content-center mt-4">
+          <div className="col-12 text-center">
+            <p className="text-white mb-0">
+              &copy; {new Date().getFullYear()} Fernando Sánchez. Todos los
+              derechos reservados.
+            </p>
           </div>
         </div>
       </div>

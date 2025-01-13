@@ -40,7 +40,7 @@ const NavbarComponent = () => {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <InputGroup className="d-flex align-items-center" id="input-search">
+        <InputGroup className="d-flex align-items-center w-100" id="input-search">
           <Form.Control
             placeholder="¿Qué curso quieres aprender hoy?"
             aria-label="Recipient's username"

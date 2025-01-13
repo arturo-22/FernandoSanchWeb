@@ -1,5 +1,15 @@
+#footer{
+    background-color: #2c2f33;
+}
 a{
     text-decoration: none !important;
+    color: #fff !important;
+}
+#subtitulos{
+    color: #b0b3c1;
+}
+#resumen{
+    text-align: justify;
 }
 #enlace-whatsapp{
     display: flex;
@@ -8,7 +18,26 @@ a{
 #img-whatsapp{
     width: 70px;
 }
+#numeroCelular{
+    margin-left: -10px;
+}
 #metodos_pago{
     display: flex;
     align-items: center;
+}
+#img-visa{
+    width: 50px;
+    height: 30px;
+}
+#img-mastercard{
+    width: 50px;
+    height: 40px;
+}
+#img-yape{
+    width: 40px;
+    height: 40px;
+}
+#img-americanExpress{
+    width: 50px;
+    height: 40px;
 }
