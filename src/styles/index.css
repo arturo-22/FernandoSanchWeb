@@ -1,0 +1,34 @@
+*{
+    text-align: justify;
+    font-family: "DINRoundPro";
+}
+
+#enlace-categorias {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    border: 1px solid #ededed;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1); 
+}
+
+#enlace-categorias:hover {
+    transform: scale(1.02); 
+}
+
+#icons-categorias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px; 
+    height: 80px; 
+    border-radius: 100%; 
+} 
+  
+#img-categoria {
+    width: 40px; 
+    height: 40px;  
+    object-fit: cover;
+}
+  

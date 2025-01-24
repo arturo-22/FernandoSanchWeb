@@ -1,7 +1,7 @@
 import "../styles/Footer.css";
 import logo from "../images/logo.jpg";
 import whatsapp from "../images/whatsapp.webp";
-import visa from "../images/Visa_Logo.png";
+import visa from "../images/visa_logo.png";
 import mastercard from "../images/mastercard.png";
 import yape from "../images/yape.png";
 import americanExpress from "../images/americanExpress.png";
@@ -28,9 +28,8 @@ const FooterComponent = () => {
               />
             </div>
             <div className="mt-3 text-white" id="resumen">
-              Somos una empresa de capacitación, brindamos cursos de
-              actualización para público en general y profesionales para las
-              convocatorias de trabajo
+              Somos una empresa que brindamos el servicio en la Gestión de Seguridad y Salud en el trabajo,
+              así como certificación de competencias por el MTPE
             </div>
             <div className="mt-3 text-white">
               <span className="d-block">RUC: 20601892295</span>
