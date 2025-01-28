@@ -13,8 +13,12 @@ import {
   Nav,
   Navbar,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const NavbarComponent = () => {
+
+  const navigate = useNavigate();
+  
   return (
     <Navbar expand="md" id="navbar">
       <Container fluid>
@@ -29,13 +33,13 @@ const NavbarComponent = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" id="menu" />
         <Navbar.Collapse>
           <Nav className="me-auto">
-            <Nav.Link href="#home" id="inicio">
+            <Nav.Link href="/" id="inicio">
               Inicio
             </Nav.Link>
-            <Nav.Link href="#link" id="cursos">
+            <Nav.Link onClick={() => navigate("/cursos")} id="cursos">
               Cursos
             </Nav.Link>
-            <Nav.Link href="#link" id="planes">
+            <Nav.Link onClick={() => navigate("/planes")}id="planes">
               Planes
             </Nav.Link>
           </Nav>
@@ -55,10 +59,10 @@ const NavbarComponent = () => {
           icon={faShoppingCart}
           id="icon-shoppingCart"
         />
-        <Button className="ms-3" variant="primary" id="btn-ingresar">
+        <Button onClick={() => navigate("/acceso")} className="ms-3" id="btn-ingresar">
           Ingresar
         </Button>
-        <Button variant="primary" id="btn-registrate">
+        <Button onClick={() => navigate("/registro")} id="btn-registrate">
           Registrate
         </Button>
       </Container>

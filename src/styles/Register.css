@@ -1,0 +1,29 @@
+#registerContainer{
+    background-image: url(../images/fondoLogin.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+#register{
+    width: 450px;
+    height: auto;
+    background-color: #ffff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#btnRegistrarme{
+    background: #fac52a;
+    font-size: 20px;
+}
+#btnInicioRegister{
+    background: #00012d;
+    color: #ffff;
+    font-size: 20px;
+
+}
+#enlaceIniciaSesion{
+    color: #0025ca !important;
+}

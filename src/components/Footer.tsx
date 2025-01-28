@@ -103,7 +103,7 @@ const FooterComponent = () => {
           </div>
         </div>
         <div className="row justify-content-center mt-4">
-          <div className="col-12 text-center">
+          <div className="col-auto text-center">
             <p className="text-white mb-0">
               &copy; {new Date().getFullYear()} Fernando Sánchez. Todos los
               derechos reservados.
