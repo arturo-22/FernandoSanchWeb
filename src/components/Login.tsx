@@ -12,7 +12,7 @@ export function Login() {
           <h1 className="text-center fw-bold">Iniciar Sesión</h1>
           <p className="text-center">
             ¿No tienes cuenta?
-            <a href="/" className="fw-bold" id="enlaceRegistrate">
+            <a onClick={() => navigate("/registro")}className="fw-bold" id="enlaceRegistrate">
               {" "}
               ¡Regístrate aquí!
             </a>
