@@ -1,7 +1,8 @@
 import { pool } from "../db.js";
 import bcrypt from "bcrypt";
+import {createAccessToken} from "../libs/jwt.js";
 
-export const getUser = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM users WHERE id = ?", [
       req.params.id,
@@ -16,20 +17,21 @@ export const getUser = async (req, res) => {
   }
 };
 
-export const createUsers = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { full_name, dni, email, password } = req.body;
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const [result] = await pool.query(
+    const [userSaved] = await pool.query(
       "INSERT INTO users (full_name, dni, email, password, created_at) VALUES (?, ?, ?, ?, NOW())",
       [full_name, dni, email, hashPassword]
     );
-
-    console.log (result);
+    console.log(userSaved)
+    const token = await createAccessToken({ id: userSaved.id });
+    res.cookie("token", token);
     res.json({
-      id: result.id,
+      message: "User created successfully",
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
