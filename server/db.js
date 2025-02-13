@@ -1,9 +1,16 @@
-import { createPool } from "mysql2/promise";
+import { Sequelize } from "sequelize";
 
-export const pool = new createPool({
+export const sequelize  = new Sequelize("sanchsolutionsdb", "root", "", {
   host: "localhost",
   port: 3306,
-  user: "root",
-  password: "",
-  database: "sanchsolutionsdb",
+  dialect: "mysql",
 });
+
+export const connectDB  = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
