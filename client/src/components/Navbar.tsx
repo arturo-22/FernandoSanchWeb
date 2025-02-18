@@ -59,10 +59,10 @@ const NavbarComponent = () => {
           icon={faShoppingCart}
           id="icon-shoppingCart"
         />
-        <Button onClick={() => navigate("/acceso")} className="ms-3" id="btn-ingresar">
+        <Button onClick={() => navigate("/login")} className="ms-3" id="btn-ingresar">
           Ingresar
         </Button>
-        <Button onClick={() => navigate("/registro")} id="btn-registrate">
+        <Button onClick={() => navigate("/register")} id="btn-registrate">
           Registrate
         </Button>
       </Container>

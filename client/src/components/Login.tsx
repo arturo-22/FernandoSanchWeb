@@ -28,7 +28,7 @@ export function Login() {
           <a className="text-dark text-center mb-3" href="/">
             ¿Olvidaste tu contraseña?
           </a>
-          <button onClick={() => navigate("/")} className="btn mb-3 fw-bold" id="btnIngresar">Ingresar</button>
+          <button onClick={() => navigate("/login")} className="btn mb-3 fw-bold" id="btnIngresar">Ingresar</button>
           <button onClick={() => navigate("/")} className="btn fw-bold" id="btnInicio">Inicio</button>
         </div>
       </div>

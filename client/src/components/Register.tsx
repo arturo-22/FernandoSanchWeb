@@ -1,41 +1,25 @@
 import "../styles/Register.css";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { createUserRequest } from "../api/users.api";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export function Register() {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
 
-  const [formData, setFormData] = useState({
-    full_name: "",
-    dni: "",
-    email: "",
-    password: "",
+  const onSubmit = handleSubmit((values: any) => {
+    signup(values);
   });
 
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (formData.dni.length !== 8) {
-      setMessage("El DNI debe tener exactamente 8 caracteres.");
-      return;
-    }
-
-    try {
-      await createUserRequest(formData);
-      setMessage("Usuario registrado exitosamente. ID: ");
-      navigate("/acceso");
-    } catch (error) {
-      setMessage("Error al registrar el usuario.");
-    }
-  };
+  useEffect(() => {
+    if (isAuthenticated) navigate("/login");
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -43,16 +27,12 @@ export function Register() {
         className="container-fluid d-flex justify-content-center align-items-center min-vh-100"
         id="registerContainer"
       >
-        <form
-          className="d-flex flex-column"
-          id="register"
-          onSubmit={handleSubmit}
-        >
+        <form className="d-flex flex-column" id="register" onSubmit={onSubmit}>
           <h1 className="text-center fw-bold">Crear una Cuenta</h1>
           <p className="text-center">
             ¿Ya tienes una cuenta?
             <a
-              onClick={() => navigate("/acceso")}
+              onClick={() => navigate("/login")}
               className="fw-bold"
               id="enlaceIniciaSesion"
             >
@@ -60,20 +40,25 @@ export function Register() {
               Inicia sesión!
             </a>
           </p>
-          {message && <p className="text-center text-danger">{message}</p>}
+          {registerErrors.map((error: string, i: number) => (
+            <div className="bg-danger text-white text-center mb-2" key={i}>
+              {error}
+            </div>
+          ))}
           <div className="mb-3">
             <label htmlFor="full_name" className="form-label">
               Nombre Completo
             </label>
             <input
               type="text"
+              {...register("full_name", { required: true })}
               className="form-control form-control-sm"
               id="full_name"
               name="full_name"
-              value={formData.full_name}
-              onChange={handleChange}
-              required
             />
+            {errors.full_name && (
+              <p className="text-danger mt-2"> Nombre Completo es requerido</p>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="dni" className="form-label">
@@ -81,14 +66,15 @@ export function Register() {
             </label>
             <input
               type="text"
+              {...register("dni", { required: true })}
               className="form-control form-control-sm"
               id="dni"
               name="dni"
-              value={formData.dni}
-              onChange={handleChange}
               maxLength={8}
-              required
             />
+            {errors.dni && (
+              <p className="text-danger mt-2"> DNI es requerido</p>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -96,13 +82,14 @@ export function Register() {
             </label>
             <input
               type="email"
+              {...register("email", { required: true })}
               className="form-control form-control-sm"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
             />
+            {errors.email && (
+              <p className="text-danger mt-2"> Email es requerido</p>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
@@ -110,13 +97,14 @@ export function Register() {
             </label>
             <input
               type="password"
+              {...register("password", { required: true })}
               className="form-control form-control-sm"
               id="password"
               name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
             />
+            {errors.password && (
+              <p className="text-danger mt-2"> Contraseña es requerida</p>
+            )}
           </div>
           <button
             type="submit"

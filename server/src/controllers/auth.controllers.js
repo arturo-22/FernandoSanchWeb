@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt";
 import { createAccessToken } from "../libs/jwt.js";
-import { User } from  "../models/user.models.js";
+import { User } from "../models/user.models.js";
 
 export const login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
+  try {
     const userFound = await User.findOne({ where: { email } });
     if (!userFound) return res.status(400).json({ message: "User not found" });
 
@@ -28,8 +28,12 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
+  const { full_name, dni, email, password } = req.body;
+
   try {
-    const { full_name, dni, email, password } = req.body;
+    const userFound = await User.findOne({ email });
+    if (userFound)
+      return res.status(400).json(["The email already exists"] );
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -44,6 +48,7 @@ export const register = async (req, res) => {
     const userSaved = await newUser.save();
 
     const token = await createAccessToken({ id: userSaved.id });
+
     res.cookie("token", token);
     res.json({
       id: userSaved.id,
@@ -65,17 +70,19 @@ export const logout = (req, res) => {
 };
 
 export const profile = async (req, res) => {
+  try {
+    const userFound = await User.findByPk(req.user.id);
 
-  const userFound = await User.findByPk(req.user.id);
+    if (!userFound) return res.status(400).json({ message: "User not found" });
 
-  if (!userFound) return res.status(400).json({ message: "User not found" });
-
-  return res.json({
-    id: userFound.id,
-    full_name: userFound.full_name,
-    dni: userFound.dni,
-    email: userFound.email,
-    created_at: userFound.created_at,
-  });
-
+    return res.json({
+      id: userFound.id,
+      full_name: userFound.full_name,
+      dni: userFound.dni,
+      email: userFound.email,
+      created_at: userFound.created_at,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
