@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { createAccessToken } from "../libs/jwt.libs.js";
-import { User } from "../models/user.models.js";
+import { createAccessToken } from "../libs/jwt.js";
+import { User } from "../../models/user.models.js";
 
 export const login = async (req, res) => {
   try {
@@ -65,5 +65,17 @@ export const logout = (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  res.send("profile");
+
+  const userFound = await User.findByPk(req.user.id);
+
+  if (!userFound) return res.status(400).json({ message: "User not found" });
+
+  return res.json({
+    id: userFound.id,
+    full_name: userFound.full_name,
+    dni: userFound.dni,
+    email: userFound.email,
+    created_at: userFound.created_at,
+  });
+
 };
