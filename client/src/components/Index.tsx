@@ -1,14 +1,15 @@
-import FooterComponent from './Footer';
-import MainComponent from './Main';
-import NavbarComponent from './Navbar';
+import FooterComponent from "./Footer";
+import HomeComponent from "../pages/HomePage";
+import NavbarComponent from "./Navbar";
 
-
-export function Index() {
+const Index = () => {
   return (
     <>
       <NavbarComponent />
-      <MainComponent />
+      <HomeComponent />
       <FooterComponent />
     </>
   );
-}
+};
+
+export default Index;

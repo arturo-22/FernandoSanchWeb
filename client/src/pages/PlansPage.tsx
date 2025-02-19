@@ -1,10 +1,10 @@
-import '../styles/Plans.css';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NavbarComponent from './Navbar';
-import FooterComponent from './Footer';
+import "../styles/pages/Plans.css";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavbarComponent from "../components/Navbar";
+import FooterComponent from "../components/Footer";
 
-export function Plans() {
+const PlansPage = () => {
   return (
     <>
       <NavbarComponent />
@@ -69,4 +69,6 @@ export function Plans() {
       <FooterComponent />
     </>
   );
-}
+};
+
+export default PlansPage;

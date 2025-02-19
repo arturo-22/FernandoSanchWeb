@@ -1,29 +1,29 @@
-#loginContainer {
-  background-image: url(../images/fondoLogin.jpeg);
+#registerContainer {
+  background-image: url(../../images/fondoLogin.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 
-#login {
+#register {
   width: 450px;
-  height: 500px;
+  height: auto;
   background-color: #ffff;
   border-radius: 20px;
-  padding: 50px;
+  padding: 20px;
 }
 
-#btnIngresar {
+#btnRegistrarme {
   background: #fac52a;
   font-size: 20px;
 }
-#btnInicio {
+#btnInicioRegister {
   background: #00012d;
   color: #ffff;
   font-size: 20px;
 }
-#enlaceRegistrate {
+#enlaceIniciaSesion {
   color: #0025ca !important;
   cursor: pointer;
 }

@@ -36,10 +36,10 @@ const NavbarComponent = () => {
             <Nav.Link onClick={() => navigate("/")}  id="inicio">
               Inicio
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/cursos")} id="cursos">
+            <Nav.Link onClick={() => navigate("/courses")} id="cursos">
               Cursos
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/planes")}id="planes">
+            <Nav.Link onClick={() => navigate("/plans")}id="planes">
               Planes
             </Nav.Link>
           </Nav>

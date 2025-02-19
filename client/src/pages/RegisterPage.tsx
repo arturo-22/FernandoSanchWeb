@@ -1,10 +1,10 @@
-import "../styles/Register.css";
+import "../styles/pages/Register.css";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
-export function Register() {
+const RegisterPage = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -15,6 +15,7 @@ export function Register() {
 
   const onSubmit = handleSubmit((values: any) => {
     signup(values);
+    navigate("/login");
   });
 
   useEffect(() => {
@@ -31,14 +32,10 @@ export function Register() {
           <h1 className="text-center fw-bold">Crear una Cuenta</h1>
           <p className="text-center">
             ¿Ya tienes una cuenta?
-            <a
-              onClick={() => navigate("/login")}
-              className="fw-bold"
-              id="enlaceIniciaSesion"
-            >
+            <Link to="/login" className="fw-bold" id="enlaceIniciaSesion">
               {" "}
               Inicia sesión!
-            </a>
+            </Link>
           </p>
           {registerErrors.map((error: string, i: number) => (
             <div className="bg-danger text-white text-center mb-2" key={i}>
@@ -103,7 +100,7 @@ export function Register() {
               name="password"
             />
             {errors.password && (
-              <p className="text-danger mt-2"> Contraseña es requerida</p>
+              <p className="text-danger mt-2"> Contraseña es requerido</p>
             )}
           </div>
           <button
@@ -125,4 +122,6 @@ export function Register() {
       </div>
     </>
   );
-}
+};
+
+export default RegisterPage;

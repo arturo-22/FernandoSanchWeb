@@ -1,4 +1,4 @@
-import '../styles/Main.css';
+import '../styles/pages/Home.css';
 import ingeniero from '../images/ingeniero.png';
 import administracion from '../images/administracion.png';
 import arquitectura from '../images/arquitectura.png';
@@ -11,7 +11,7 @@ import electicidad from '../images/electricidad.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 
-const MainComponent = () => {
+const HomeComponent = () => {
   return (
     <main>
       <div className="container-fluid">
@@ -196,4 +196,4 @@ const MainComponent = () => {
   );
 };
 
-export default MainComponent;
+export default HomeComponent;
