@@ -26,11 +26,11 @@ export const registerSchema = z.object({
 export const loginSchema = z.object({
   userName: z
     .string({
-      required_error: "DNI o Email is required",
+      required_error: "Ingrese su DNI o correo electrónico",
     }),
   password: z
     .string({
-      required_error: "Password is required",
+      required_error: "Ingrese su contraseña",
     })
     .min(8, {
       message: "La contraseña debe tener al menos 8 caracteres",

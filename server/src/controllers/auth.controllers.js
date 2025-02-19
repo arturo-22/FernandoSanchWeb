@@ -9,9 +9,11 @@ export const login = async (req, res) => {
   const { userName, password } = req.body;
 
   try {
-    if (!userName) {
-      return res.status(400).json({ message: "Username is required" });
-    }
+    if (!userName)
+      return res.status(400).json({ message: "Ingrese su DNI o correo electrónico" });
+
+    if (!password)
+      return res.status(400).json({ message: "Ingrese su contraseña" });
 
     const userFound = await User.findOne({
       where: {
@@ -19,13 +21,12 @@ export const login = async (req, res) => {
       },
     });
 
-    if (!userFound) {
-      return res.status(400).json({ message: "User not found" });
-    }
+    if (!userFound)
+      return res.status(400).json({ message: "Usuario no encontrado" });
 
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch)
-      return res.status(400).json({ message: "Incorrect password" });
+      return res.status(400).json({ message: "Contraseña incorrecta" });
 
     const token = await createAccessToken({ id: userFound.id });
     res.cookie("token", token);
@@ -45,14 +46,15 @@ export const register = async (req, res) => {
   const { full_name, dni, email, password } = req.body;
 
   try {
+    const fullNameExists = await User.findOne({ where: { full_name } });
+    if (fullNameExists) return res.status(400).json(["El nombre ya existe"]);
 
     const emailExists = await User.findOne({ where: { email } });
-    if (emailExists) return res.status(400).json(["The email already exists"]);
-    
+    if (emailExists)
+      return res.status(400).json(["El correo electrónico ya existe"]);
 
     const dniExists = await User.findOne({ where: { dni } });
-    if (dniExists) return res.status(400).json(["The DNI already exists"]);
-    
+    if (dniExists) return res.status(400).json(["El DNI ya existe"]);
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -92,7 +94,7 @@ export const profile = async (req, res) => {
   try {
     const userFound = await User.findByPk(req.user.id);
 
-    if (!userFound) return res.status(400).json({ message: "User not found" });
+    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
 
     return res.json({
       id: userFound.id,
@@ -109,14 +111,14 @@ export const profile = async (req, res) => {
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
 
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
+  if (!token) return res.status(401).json({ message: "No autorizado" });
 
   jwt.verify(token, TOKEN_SECRET, async (err, user) => {
-    if (err) return res.status(401).json({ message: "Unauthorized" });
+    if (err) return res.status(401).json({ message: "No autorizado" });
 
     const userFound = await User.findByPk(user.id);
 
-    if (!userFound) return res.status(401).json({ message: "Unauthorized" });
+    if (!userFound) return res.status(401).json({ message: "No autorizado" });
 
     return res.json({
       id: userFound.id,

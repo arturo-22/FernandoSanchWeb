@@ -1,15 +1,15 @@
-import '../styles/pages/Home.css';
-import ingeniero from '../images/ingeniero.png';
-import administracion from '../images/administracion.png';
-import arquitectura from '../images/arquitectura.png';
-import carretera from '../images/carretera.png';
-import civil from '../images/civil.png';
-import construccion from '../images/construccion.png';
-import contabilidad from '../images/contabilidad.png';
-import derecho from '../images/derecho.png';
-import electicidad from '../images/electricidad.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import "../styles/pages/Home.css";
+import ingeniero from "../images/ingeniero.png";
+import administracion from "../images/administracion.png";
+import arquitectura from "../images/arquitectura.png";
+import carretera from "../images/carretera.png";
+import civil from "../images/civil.png";
+import construccion from "../images/construccion.png";
+import contabilidad from "../images/contabilidad.png";
+import derecho from "../images/derecho.png";
+import electicidad from "../images/electricidad.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 
 const HomeComponent = () => {
   return (
