@@ -2,6 +2,8 @@ import "../styles/pages/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
+import ModalRecoverPassword from "../modals/ModalRecoverPassword";
+import { useState } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,6 +13,15 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
   const { signin, errors: signinErrors } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const onSubmit = handleSubmit((data: any) => {
     signin(data);
@@ -62,9 +73,13 @@ const LoginPage = () => {
               <p className="text-danger mt-2"> Contraseña es requerido</p>
             )}
           </div>
-          <Link to="/" className="text-dark text-center mb-3">
+          <span
+            className="text-dark text-center mb-3"
+            onClick={handleOpenModal}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
             ¿Olvidaste tu contraseña?
-          </Link>
+          </span>
           <button type="submit" className="btn mb-3 fw-bold" id="btnIngresar">
             Ingresar
           </button>
@@ -77,6 +92,7 @@ const LoginPage = () => {
           </button>
         </form>
       </div>
+      <ModalRecoverPassword isOpen={isModalOpen} onClose={handleCloseModal} />
     </>
   );
 };

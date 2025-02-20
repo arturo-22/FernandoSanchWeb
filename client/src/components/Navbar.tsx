@@ -14,7 +14,7 @@ import {
   Navbar,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import ModalEnlace from "./ModalEnlace";
+import ModalEnlace from "../modals/ModalEnlace";
 import { useState } from "react";
 
 const NavbarComponent = () => {
