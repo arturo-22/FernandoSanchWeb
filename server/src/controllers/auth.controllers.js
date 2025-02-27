@@ -4,13 +4,16 @@ import { User } from "../models/user.models.js";
 import { Op } from "sequelize";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
+import { createTransporter, createMailOptions } from "../helpers/mailer.js";
 
 export const login = async (req, res) => {
   const { userName, password } = req.body;
 
   try {
     if (!userName)
-      return res.status(400).json({ message: "Ingrese su DNI o correo electrónico" });
+      return res
+        .status(400)
+        .json({ message: "Ingrese su DNI o correo electrónico" });
 
     if (!password)
       return res.status(400).json({ message: "Ingrese su contraseña" });
@@ -94,7 +97,8 @@ export const profile = async (req, res) => {
   try {
     const userFound = await User.findByPk(req.user.id);
 
-    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
+    if (!userFound)
+      return res.status(400).json({ message: "Usuario no encontrado" });
 
     return res.json({
       id: userFound.id,
@@ -126,4 +130,66 @@ export const verifyToken = async (req, res) => {
       email: userFound.email,
     });
   });
+};
+
+export const requestPasswordReset = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: { email },
+    });
+    if (!user)
+      return res.status(404).json({
+        message:
+          "El usuario ingresado no coincide con ninguna cuenta en nuestro sistema",
+      });
+
+    const token = await createAccessToken({ id: user.id });
+
+    const resetURL = `https://your-backend-url/resetpassword?id=${user._id}&token=${token}`;
+
+    //send email
+    const transporter = createTransporter(email);
+    const mailOptions = createMailOptions(email, resetURL);
+    await transporter.sendMail(mailOptions);
+
+    res.status(200).json({ message: "Enlace de restablecimiento de contraseña enviado" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  try {
+    const user = await User.findOne({ _id: id });
+    if (!user) {
+      return res.status(400).json({ message: "User not exists!" });
+    }
+
+    const secret = process.env.JWT + user.password;
+
+    const verify = jwt.verify(token, secret);
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    await User.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          password: encryptedPassword,
+        },
+      }
+    );
+
+    await user.save();
+
+    res.status(200).json({ message: "Password has been reset" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
 };

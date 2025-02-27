@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { usePassword } from "../context/PasswordContext";
 
 interface ModalRecoverPasswordProps {
   isOpen: boolean;
@@ -17,9 +18,10 @@ const ModalRecoverPassword: React.FC<ModalRecoverPasswordProps> = ({
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit((values: any) => {
-    console.log(values);
-    onClose();
+  const { sendResetPasswordEmail, errors: emailErrors } = usePassword();
+
+  const onSubmit = handleSubmit((data: any) => {
+    sendResetPasswordEmail(data);
   });
 
   return (
@@ -43,6 +45,11 @@ const ModalRecoverPassword: React.FC<ModalRecoverPasswordProps> = ({
 
       <Form onSubmit={onSubmit}>
         <Modal.Body>
+          {emailErrors.map((error: string, i: number) => (
+            <div className="bg-danger text-white text-center mb-2" key={i}>
+              {error}
+            </div>
+          ))}
           <p className="text-muted fs-5 mx-4" style={{ textAlign: "justify" }}>
             Ingresa el email de tu cuenta y te enviaremos un link para
             reestablecer la contraseña.
