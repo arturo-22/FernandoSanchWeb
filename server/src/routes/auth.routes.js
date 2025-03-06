@@ -5,8 +5,8 @@ import {
   logout,
   profile,
   verifyToken,
-  resetPassword,
-  requestPasswordReset,
+  sendResetPassword,
+  updatePassword,
 } from "../controllers/auth.controllers.js";
 import { authRequired } from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.js";
@@ -21,7 +21,7 @@ router.post("/logout", logout);
 router.get("/verify", verifyToken);
 router.get("/profile", authRequired, profile);
 
-router.post("/requestPasswordReset", requestPasswordReset);
-router.put("/resetPassword", resetPassword);
+router.post("/sendResetPassword", sendResetPassword);
+router.put("/updatePassword", updatePassword);
 
 export default router;

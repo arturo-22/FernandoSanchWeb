@@ -132,7 +132,7 @@ export const verifyToken = async (req, res) => {
   });
 };
 
-export const requestPasswordReset = async (req, res) => {
+export const sendResetPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -160,7 +160,7 @@ export const requestPasswordReset = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res, next) => {
+export const updatePassword = async (req, res, next) => {
   const { id, token } = req.params;
   const { password } = req.body;
 

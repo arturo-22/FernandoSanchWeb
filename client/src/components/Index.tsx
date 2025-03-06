@@ -2,7 +2,7 @@ import FooterComponent from "./Footer";
 import HomeComponent from "../pages/HomePage";
 import NavbarComponent from "./Navbar";
 
-const Index = () => {
+const Index =  () => {
   return (
     <>
       <NavbarComponent />

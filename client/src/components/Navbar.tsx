@@ -16,10 +16,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import ModalEnlace from "../modals/ModalEnlace";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const NavbarComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -36,7 +38,11 @@ const NavbarComponent = () => {
               id="img-logo"
             />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" id="menu" onClick={handleShowModal} />
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            id="menu"
+            onClick={handleShowModal}
+          />
           <Navbar.Collapse className="d-none d-md-block">
             <Nav className="me-auto">
               <Nav.Link onClick={() => navigate("/")} id="inicio">

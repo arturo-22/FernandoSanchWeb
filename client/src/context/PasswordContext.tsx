@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { resetPasswordRequest } from "../api/auth";
+import { sendResetPasswordRequest } from "../api/auth";
 
 const PasswordContext = createContext<any>(null);
 
@@ -19,7 +19,7 @@ export function PasswordProvider({ children }: any) {
 
   const sendResetPasswordEmail = async (email: string) => {
     try {
-      const res = await resetPasswordRequest(email);
+      const res = await sendResetPasswordRequest(email);
       setEmail(res);
     } catch (error) {
       if (error instanceof Error && (error as any)?.response?.data) {
