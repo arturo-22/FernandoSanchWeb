@@ -1,39 +1,43 @@
-import { Button, Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Dropdown, Nav, Navbar } from "react-bootstrap";
+import { CiBookmark, CiFlag1, CiSettings } from "react-icons/ci";
+import { LuCirclePower } from "react-icons/lu";
+import { MdOutlineSlowMotionVideo } from "react-icons/md";
+import { RiDashboard3Line } from "react-icons/ri";
 
 const UserProfileMenu = () => {
   return (
     <>
-      <Navbar bg="dark" variant="dark" className="p-3">
-        <Navbar.Brand href="#">Mi Plataforma</Navbar.Brand>
+      <Navbar className="p-3">
         <Nav className="ms-auto d-flex align-items-center">
-          {/* Botón del carrito */}
-          <Button variant="warning" className="me-3">
-            {/* <BsCart /> */}
-          </Button>
-          {/* Menú desplegable */}
           <Dropdown align="end">
             <Dropdown.Toggle variant="secondary" className="rounded-circle">
-             AR
+              AR
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="#">
-                {/* <BsGrid className="me-2" /> Dashboard */}
+                <RiDashboard3Line className="me-2 text-dark" />{" "}
+                <span className="text-dark">Dashboard</span>
               </Dropdown.Item>
               <Dropdown.Item href="#">
-                {/* <BsBook className="me-2" /> Mis cursos */}
+                <MdOutlineSlowMotionVideo className="me-2 text-dark" />{" "}
+                <span className="text-dark">Mis Cursos</span>
               </Dropdown.Item>
               <Dropdown.Item href="#">
-                {/* <BsAward className="me-2" /> Certificados */}
+                <CiBookmark  className="me-2 text-dark" />{" "}
+                <span className="text-dark">Certificados</span>
               </Dropdown.Item>
               <Dropdown.Item href="#">
-                {/* <BsQuestionCircle className="me-2" /> Centro de ayuda */}
+                <CiFlag1  className="me-2 text-dark" />{" "}
+                <span className="text-dark">Centro de ayuda</span>
               </Dropdown.Item>
               <Dropdown.Item href="#">
-                {/* <BsGear className="me-2" /> Configuración */}
+                <CiSettings  className="me-2 text-dark" />{" "}
+                <span className="text-dark">Configuración</span>
               </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item href="#" className="text-danger">
-                {/* <BsBoxArrowRight className="me-2" /> Cerrar sesión */}
+                <LuCirclePower  className="me-2 text-dark" />{" "}
+                <span className="text-dark">Cerrar sesión</span>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

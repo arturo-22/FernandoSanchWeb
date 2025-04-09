@@ -25,6 +25,7 @@ const LoginPage = () => {
 
   const onSubmit = handleSubmit((data: any) => {
     signin(data);
+    navigate("/");
   });
 
   return (

@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import ModalEnlace from "../modals/ModalEnlace";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import UserProfileMenu from "./UserProfileMenu";
 
 const NavbarComponent = () => {
   const [showModal, setShowModal] = useState(false);
@@ -57,7 +58,7 @@ const NavbarComponent = () => {
             </Nav>
           </Navbar.Collapse>
           <InputGroup
-            className="d-flex align-items-center w-100"
+            className="d-flex align-items-center w-50"
             id="input-search"
           >
             <Form.Control
@@ -74,16 +75,22 @@ const NavbarComponent = () => {
             icon={faShoppingCart}
             id="icon-shoppingCart"
           />
-          <Button
-            onClick={() => navigate("/login")}
-            className="ms-3"
-            id="btn-ingresar"
-          >
-            Ingresar
-          </Button>
-          <Button onClick={() => navigate("/register")} id="btn-registrate">
-            Registrate
-          </Button>
+          {isAuthenticated ? (
+            <UserProfileMenu />
+          ) : (
+            <>
+              <Button
+                onClick={() => navigate("/login")}
+                className="ms-3"
+                id="btn-ingresar"
+              >
+                Ingresar
+              </Button>
+              <Button onClick={() => navigate("/register")} id="btn-registrate">
+                Registrate
+              </Button>
+            </>
+          )}
         </Container>
       </Navbar>
 
